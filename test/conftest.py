@@ -9,14 +9,14 @@ from utils import attach
 
 # @pytest.fixture(scope="function", autouse=True)
 # def browser_managment():
-#     #browser.config.base_url = 'https://demoqa.com'
+#     browser.config.base_url = 'https://demoqa.com'
 #     browser.config.window_width = 1920
 #     browser.config.window_height = 1080
 #
 #     yield
 #
 #     browser.quit()
-#
+
 @pytest.fixture(scope='function')
 def setup_browser(request):
     options = Options()
@@ -29,21 +29,18 @@ def setup_browser(request):
         }
     }
     options.capabilities.update(selenoid_capabilities)
-    driver = webdriver.Remote(
-        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options
-    )
-
+    driver = webdriver.Remote(command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub", options=options)
+    browser.config.base_url = "https://demoqa.com"
     browser.config.driver = driver
-    browser.config.base_url = 'https://demoqa.com'
-    browser.config.timeout = 20
-    browser.config.window_width = 1280
-    browser.config.window_height = 1024
+    browser.config.timeout = 2.0
+
     yield browser
 
     attach.add_screenshot(browser)
     attach.add_logs(browser)
     attach.add_html(browser)
     attach.add_video(browser)
+
+    browser.quit()
 
     browser.quit()
