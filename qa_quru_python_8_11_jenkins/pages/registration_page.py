@@ -8,7 +8,7 @@ class RegistrationPage:
         self.registered_user_data = browser.element('.table').all('tr td:nth-child(2)')
 
     def open(self):
-        browser.open("/automation-practice-form")
+        browser.open("https://demoqa.com/automation-practice-form")
 
     def type_first_name(self, param):
         browser.element("#firstName").type(param)

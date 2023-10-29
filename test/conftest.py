@@ -7,16 +7,16 @@ from selene import Browser, Config
 from utils import attach
 
 
-@pytest.fixture(scope="function", autouse=True)
-def browser_managment():
-    browser.config.base_url = 'https://demoqa.com'
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
-
-    yield
-
-    browser.quit()
-
+# @pytest.fixture(scope="function", autouse=True)
+# def browser_managment():
+#     #browser.config.base_url = 'https://demoqa.com'
+#     browser.config.window_width = 1920
+#     browser.config.window_height = 1080
+#
+#     yield
+#
+#     browser.quit()
+#
 @pytest.fixture(scope='function')
 def setup_browser(request):
     options = Options()
