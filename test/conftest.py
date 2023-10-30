@@ -17,7 +17,7 @@ from utils import attach
 #
 #     browser.quit()
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
     options = Options()
     selenoid_capabilities = {
@@ -33,6 +33,8 @@ def setup_browser(request):
     browser.config.base_url = "https://demoqa.com"
     browser.config.driver = driver
     browser.config.timeout = 2.0
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
 
     yield browser
 
@@ -40,7 +42,5 @@ def setup_browser(request):
     attach.add_logs(browser)
     attach.add_html(browser)
     attach.add_video(browser)
-
-    browser.quit()
 
     browser.quit()
