@@ -9,6 +9,8 @@ class RegistrationPage:
 
     def open(self):
         browser.open("/automation-practice-form")
+        browser.execute_script('document.querySelector("#fixedban").remove()')
+        browser.element('footer').execute_script('element.remove()')
 
     def type_first_name(self, param):
         browser.element("#firstName").type(param)
