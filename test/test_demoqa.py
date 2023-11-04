@@ -1,15 +1,15 @@
 import allure
-from selene import have
 from allure_commons.types import Severity
+from selene import have
 
 from qa_quru_python_8_11_jenkins.pages.registration_page import RegistrationPage
+
 
 @allure.tag("web")
 @allure.severity(Severity.NORMAL)
 @allure.label("owner", "Kostromin")
 @allure.story("Регистрация пользователя")
 def test_Positive_Student_Registration_Form():
-
     registration_page = RegistrationPage()
 
     # WHEN
